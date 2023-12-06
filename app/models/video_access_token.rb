@@ -1,0 +1,2 @@
+class VideoAccessToken < ApplicationRecord
+end

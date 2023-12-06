@@ -1,0 +1,82 @@
+doctype html
+html lang="pt-BR"
+  head
+    meta charset="utf-8"
+    meta name="robots" content="noindex"
+    meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"
+    meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"
+    title
+
+    = stylesheet_link_tag "membro_cliente/application", media: "all"
+    = javascript_include_tag "membro_cliente/application"
+    /= javascript_include_tag "channels/application"
+    
+
+    script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-34824777-48" 
+    javascript:
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-34824777-48');
+
+    = csrf_meta_tags
+    /[if lt IE 9]
+      = javascript_include_tag 'html5shiv-printshiv'
+
+  body
+    header
+      .logo-box
+        = link_to membro_cliente_root_path do
+          /= image_tag 'logoadpese.png'
+
+        .login-box
+          .login-information
+            span Olá,
+            p #{current_membro_cliente.nome}
+
+          = link_to '#', class: 'login-link' do
+            = image_tag 'user-icon.png'
+
+          .elements-login
+            = image_tag 'arrow.png', class: 'arrow'
+
+            .login-options-box
+              /= link_to 'Editar Perfil', edit_member_registration_path, class: 'member-link'
+              = link_to 'Acessar Vídeo', public_video_path(customer_id: current_membro_cliente.customer_id), class: 'member-link', target: '_blank'
+              = link_to 'Sair', destroy_membro_cliente_session_path, method: :delete, class: 'member-link'
+
+
+      /.square-box
+        = image_tag 'squares.png'
+
+      /.square-box-second
+        = image_tag 'squares.png'
+
+      .container
+        nav#menu
+          /.col-sm-12.menu-box
+
+            = nav_link_to 'Convênios', member_root_path, class: 'menu-link'
+
+            = nav_link_to 'Associados', member_associations_path, class: 'menu-link'
+
+            = nav_link_to 'Galerias', member_gallery_members_path, class: 'menu-link'
+
+            - if @document_categories.present?
+              - @document_categories.each do |category|
+                = nav_link_to category.name, member_documents_path(category.slug), class: 'menu-link'
+
+
+            - if @archive_categories.present?
+              - @archive_categories.each do |carchive|
+                = nav_link_to carchive.name, member_archives_path(carchive.slug), class: 'menu-link'
+
+
+            = nav_link_to 'Petições', member_petitions_path, class: 'menu-link'
+
+
+
+      main
+      = yield
+
+    footer

@@ -1,0 +1,49 @@
+h2 Colaboradores do Cliente #{@customer.nome_fantasia}
+.panel.panel-default
+  .panel-body
+    = simple_form_for @q, url: search_admin_customer_membro_clientes_path, html: {class: 'search-form'}, method: :get do |f|
+      .row
+        .col-md-4
+          = f.label :nome, label: 'Nome', required: false
+          = f.input_field :nome, class: 'col-md-12 form-control' 
+        .col-md-4
+          = f.label :email, label: 'E-mail', required: false
+          = f.input_field :email, class: 'col-md-12 form-control'      
+
+        .col-md-1.mt-25
+          = f.submit 'Buscar', class: 'btn btn-buscar'
+        .col-md-1.mt-25
+          = f.submit 'Todos', class: 'btn btn-limpar'
+
+.panel.panel-default
+  .table-responsive
+    table.table.table-striped.b-t.b-light
+      thead
+        tr
+          th.text-center Nome
+          /th.text-center Está ativo?
+          th.text-center E-mail
+          th.text-center Telefone
+          /th.text-center Último Login
+          th.text-center(width=210) Ações
+      tbody
+        -if @membros.present?
+          - @membros.order(nome: :asc).each do |r|
+            tr
+              td.text-center = r.nome 
+              /td.text-center   
+                /- if r.status?
+                  = link_to admin_active_membro_path(r), method: :put, class: "btn btn-success" do
+                    = icon('fas fa', 'check')
+                /- else
+                  = link_to admin_active_membro_path(r), method: :put, class: "btn btn-danger" do
+                    = icon('fas fa', 'ban')
+
+              td.text-center = r.email 
+              td.text-center = r.telefone
+              /td.text-center = r.last_sign_in_at.strftime('%d/%m/%Y %H:%M:%S') if r.last_sign_in_at.present?
+              td.text-center.links-actions
+                = render 'admin/shared/actions_membro', r: r   
+= render 'admin/shared/create_membro'
+
+            

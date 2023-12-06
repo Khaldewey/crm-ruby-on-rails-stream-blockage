@@ -1,0 +1,5 @@
+= link_to 'Adicionar Membro', new_admin_customer_membro_cliente_path(params[:customer_id]), class: "btn btn-primary btn-lg" if can? :create, MembroCliente
+= link_to 'Voltar', admin_customers_path, class: 'btn btn-danger btn-lg'
+
+.text-center
+  = will_paginate(collection, renderer: 'ApplicationHelper::LinkRenderer', class: 'pagination pagination-lg')

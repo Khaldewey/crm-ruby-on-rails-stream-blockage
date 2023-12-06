@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  token: MyString
+  membro_cliente_id: 1
+  customer_id: 1
+
+two:
+  token: MyString
+  membro_cliente_id: 1
+  customer_id: 1

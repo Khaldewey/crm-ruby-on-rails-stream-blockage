@@ -1,0 +1,31 @@
+doctype html
+html
+  head 
+   head
+    meta charset="utf-8"
+    meta name="robots" content="noindex"
+    meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"
+    meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" 
+    title Sua Página de Transmissão
+    = javascript_include_tag "public_videos/application"
+    /= javascript_include_tag 'application' 
+    /= javascript_include_tag 'channels/application' 
+  body
+        span Olá,
+        p #{@customer.first.nome_fantasia}
+        .container data-data-inicial="#{@data_inicio}" data-data-encerramento="#{@data_encerramento}"
+        span.tv-live Ao Vivo
+        /iframe#meu-iframe width="100%" height="665" frameborder="0" scrolling="no" src="#{@iframe_src}" style="border: 0; outline: 0;"
+        - if @transmissao_bloqueada
+            p A transmissão está bloqueada no momento.
+            - if @imagem 
+              p = @imagem 
+            - if @youtube 
+              p = @youtube 
+            - if @vimeo 
+              p = @vimeo
+        - else
+            iframe width="100%" height="665" frameborder="0" scrolling="no" src= @iframe_src style="border: 0; outline: 0;"
+            
+        
+

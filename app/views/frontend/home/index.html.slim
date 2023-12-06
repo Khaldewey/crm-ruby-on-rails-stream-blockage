@@ -1,0 +1,17 @@
+doctype html
+html
+  head
+    title Sua Página de Transmissão
+  body
+    .container data-data-inicial="#{@data_inicio}" data-data-encerramento="#{@data_encerramento}"
+      span.tv-live Ao Vivo
+      /iframe#meu-iframe width="100%" height="665" frameborder="0" scrolling="no" src="#{@iframe_src}" style="border: 0; outline: 0;"
+      - if @transmissao_bloqueada
+        p A transmissão está bloqueada no momento.
+      - else
+        iframe width="100%" height="665" frameborder="0" scrolling="no" src= @iframe_src style="border: 0; outline: 0;"
+    
+    // Adicione o atributo de dados (data attribute) no elemento container
+      /- if @data_inicio
+        /script.
+          /document.querySelector('.container').setAttribute('data-data-inicial', "#{@data_inicio.iso8601}")

@@ -1,0 +1,15 @@
+h2 URL
+= simple_form_for [:admin, resource], :html => { :class => 'form-horizontal' } do |f|
+  section.panel.panel-default
+    header.panel-heading.font-bold
+      = resource.new_record? ? "Adicionar URL" : "Editar URL - #{resource.url}"
+    .panel-body
+      = f.input :status, :label => 'O link está ativo?'
+      .line.line-dashed.b-b.line-lg.pull-in
+      = f.input :url, :label => 'Link URL Stream'    
+      .line.line-dashed.b-b.line-lg.pull-in
+      = f.input :customer_id, collection: Customer.all.map { |c| [c.nome_fantasia, c.id] }, prompt: 'Selecione um cliente', label: 'Cliente'
+      
+     
+
+  = render 'admin/shared/form_actions', f: f

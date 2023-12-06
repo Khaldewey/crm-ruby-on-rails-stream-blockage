@@ -1,0 +1,22 @@
+h2 Bloqueios de Transmissão
+= simple_form_for [:admin, resource], :html => { :class => 'form-horizontal' } do |f|
+  section.panel.panel-default
+    header.panel-heading.font-bold
+      = resource.new_record? ? "Adicionar Bloqueio" : "Editar Bloqueio - #{resource.data_hora_inicio}"
+    .panel-body
+      = f.input :status, :label => 'Vai ativar este bloqueio?'
+      .line.line-dashed.b-b.line-lg.pull-in
+      = f.input :data_hora_inicio, as: :string, :label => 'Data de Início', input_html: { class: 'datetime', data: { :'date-format' => "DD/MM/YYYY HH:mm" } }   
+      .line.line-dashed.b-b.line-lg.pull-in
+      = f.input :data_hora_final, as: :string, :label => 'Data de Encerramento', input_html: { class: 'datetime', data: { :'date-format' => "DD/MM/YYYY HH:mm" } }   
+      .line.line-dashed.b-b.line-lg.pull-in
+      = f.input :customer_id, collection: Customer.all.map { |c| [c.nome_fantasia, c.id] }, prompt: 'Selecione um cliente', label: 'Cliente'
+      .line.line-dashed.b-b.line-lg.pull-in 
+      = f.input :link_youtube, :label => 'Link Youtube'    
+      .line.line-dashed.b-b.line-lg.pull-in
+      = f.input :link_vimeo, :label => 'Link Vimeo'    
+      .line.line-dashed.b-b.line-lg.pull-in 
+      = f.input :link_imagem, as: :image_preview, :label => 'Imagem', :input_html => { :preview_version => :preview }, hint: "Largura: 458px  - Altura: 458px "   
+      .line.line-dashed.b-b.line-lg.pull-in
+
+  = render 'admin/shared/form_actions', f: f

@@ -1,0 +1,39 @@
+h2 Cliente
+= simple_form_for [:admin, resource], :html => { :class => 'form-horizontal' } do |f|
+  section.panel.panel-default
+    header.panel-heading.font-bold
+      = resource.new_record? ? "Adicionar Cliente" : "Editar Cliente - #{resource.nome_fantasia}"
+    .panel-body
+      = f.input :razao_social, :label => 'Razão Social'    
+      .line.line-dashed.b-b.line-lg.pull-in
+      = f.input :nome_fantasia, :label => 'Nome Fantasia'
+      .line.line-dashed.b-b.line-lg.pull-in
+      = f.input :cnpj, :label => 'CNPJ'
+      .line.line-dashed.b-b.line-lg.pull-in
+      = f.input :inscricao_estadual, label: 'Inscrição Estadual'
+      .line.line-dashed.b-b.line-lg.pull-in
+      = f.input :inscricao_municipal, label: 'Inscrição Municipal'
+      .line.line-dashed.b-b.line-lg.pull-in
+      = f.input :endereco, label: 'Endereço'
+      .line.line-dashed.b-b.line-lg.pull-in
+      = f.input :numero, label: 'Número'
+      .line.line-dashed.b-b.line-lg.pull-in
+      = f.input :bairro, :label => 'Bairro'
+      .line.line-dashed.b-b.line-lg.pull-in
+      = f.input :cep, :label => 'CEP' 
+      .line.line-dashed.b-b.line-lg.pull-in
+      = f.input :estado, :label => 'Estado'
+      .line.line-dashed.b-b.line-lg.pull-in
+      = f.input :cidade, :label => 'Cidade' 
+      .line.line-dashed.b-b.line-lg.pull-in
+      = f.input :site, :label => 'Site'
+      .line.line-dashed.b-b.line-lg.pull-in
+      = f.input :email, :label => 'E-mail'
+      .line.line-dashed.b-b.line-lg.pull-in
+      = f.input :telefone, :label => 'Telefone'
+      /.line.line-dashed.b-b.line-lg.pull-in
+      /= f.association :url_streams, label: 'URL Stream Selecionado'
+      .line.line-dashed.b-b.line-lg.pull-in
+      = f.input :campo, :label => 'Campo', :as => :ckeditor, :input_html => { :ckeditor => { :toolbar => 'Pure' } }
+
+  = render 'admin/shared/form_actions', f: f

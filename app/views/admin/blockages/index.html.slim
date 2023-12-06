@@ -1,0 +1,42 @@
+h2 Bloqueios de Transmissão
+.panel.panel-default
+  .panel-body
+    = simple_form_for @q, url: search_admin_blockages_path, html: {class: 'search-form'}, method: :get do |f|
+      .row
+        .col-md-4
+          = f.label :customer_id, label: 'Cliente', required: false
+          = f.collection_select :customer_id, Customer.all, :id, :nome_fantasia, { prompt: 'Todos os clientes' }, { class: 'col-md-12 form-control' }
+        .col-md-1.mt-25
+          = f.submit 'Buscar', class: 'btn btn-buscar'
+        .col-md-1.mt-25
+          = link_to 'Limpar Busca', '', class: 'btn btn-limpar'
+    
+
+= render 'admin/shared/create_only'
+.panel.panel-default
+  .table-responsive
+    table.table.table-striped.b-t.b-light
+      thead
+        tr
+          th.text-center Data/Hora Início
+          th.text-center Data/hora Final
+          th.text-center Status
+          th.text-center Cliente
+          th.text-center(width=300) Ações
+      tbody
+        - @collection.order(created_at: :desc).each do |r|
+          tr          
+            td.text-center= r.data_hora_inicio
+            td.text-center= r.data_hora_final           
+            td.text-center
+              - if r.status?
+                = link_to admin_active_block_path(r), method: :put, class: "btn btn-success" do
+                  = icon('fas fa', 'check')
+              - else
+                = link_to admin_active_block_path(r), method: :put, class: "btn btn-danger" do
+                  = icon('fas fa', 'ban')
+
+            td.text-center= Customer.where(id: r.customer_id).first.nome_fantasia
+            td.text-center.links-actions
+              = render 'admin/shared/actions', r: r              
+= render 'admin/shared/create_only'
