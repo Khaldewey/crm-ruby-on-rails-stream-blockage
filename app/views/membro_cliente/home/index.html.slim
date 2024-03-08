@@ -1,7 +1,8 @@
 section#agreement
   .container
     .col-sm-12.banner-box-external
-       h2 Adicionar Bloqueio de Transmissão
+       h2 
+       h3 Adicionar Bloqueio de Transmissão 
     = form_for [current_membro_cliente, Blockage.new] do |f|
       .form-group
         = f.label :data_hora_inicio, 'Data e Hora de Início'
@@ -14,7 +15,8 @@ section#agreement
       .form-group
         /= label 'Tipo', for: 'tipo-dropdown'
         = select_tag 'tipo-dropdown', options_for_select(['Selecione o tipo', 'YouTube', 'Vimeo', 'Imagem']), id: 'tipo-dropdown', class: 'form-control'
-
+  
+     
        
             
 
