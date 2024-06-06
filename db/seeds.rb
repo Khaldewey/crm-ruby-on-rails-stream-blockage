@@ -25,20 +25,20 @@ end
   Role.find_or_create_by(name: role)
 end
 
-User.find_or_create_by(email: 'redacao@corp.agenciaacerte.com') do |u|
+User.find_or_create_by(email: 'redacao@corp.blockage.com') do |u|
   u.password = '#acer7e2727'
   u.is_active = true
   u.role = Role.where(name: 'Redação').first
 end
 
-User.find_or_create_by(email: 'atendimento@agenciaacerte.com') do |u|
+User.find_or_create_by(email: 'atendimento@blockage.com') do |u|
   u.password = 'Atend2727*'
   u.is_active = true
   u.role = Role.where(name: 'Atendimento').first
 end
 
 namespace :dev do
-  User.find_or_create_by(email: 'desenvolvimento@agenciaacerte.com') do |u|
+  User.find_or_create_by(email: 'desenvolvimento@blockage.com') do |u|
     u.password = '-, 8?Wgc-_j<np#~'
     u.is_active = true
     u.role = Role.where(name: 'Admin').first

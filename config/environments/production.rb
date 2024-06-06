@@ -83,7 +83,7 @@ Target::Application.configure do
   ActionMailer::Base.smtp_settings = {
     :user_name => "apikey",
     :password => "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",
-    :domain => "agenciaacerte.com",
+    :domain => "blockage.com",
     :address => "smtp.sendgrid.net",
     :port => 587,
     :authentication => :plain,
